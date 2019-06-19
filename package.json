@@ -8,9 +8,11 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src/ --fix",
     "prettier": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "ppp": "prettier --check"
+    "prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "dependencies": {
     "dva-core": "^1.4.0",
     "dva-loading": "^3.0.4",
@@ -43,6 +45,7 @@
     "eslint-plugin-typescript": "^0.14.0",
     "jest": "^24.8.0",
     "metro-react-native-babel-preset": "^0.54.1",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.17.1",
     "react-native-rename": "^2.4.1",
     "react-test-renderer": "16.8.3",

@@ -20,6 +20,8 @@ React Native 快速开始开发的优雅起始架
     ```react-native run-android/run-ios```
 
 ## To-Do
+- [x] pre-commit hook
+
 - [ ] 封装Axios网络请求
 
 - [ ] Mock数据能力

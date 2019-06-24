@@ -37,6 +37,7 @@ module.exports = {
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] }
     ], //支持在tsx文件中写jsx语法
     'indent': [1, 4], //个人喜好，使用四个空格（1个tab）代替默认的两个空格缩进
+    'global-require':0, //允许在非全局使用require引入，主要为了适配RN的Image组件
     'react/jsx-indent': [1, 4], //jsx语法中也使用四个空格的缩进
     'react/jsx-indent-props': [1, 4], //jsx语法中props缩进
     'react/prop-types': 0, //防止在React组件定义中丢失props验证？？？

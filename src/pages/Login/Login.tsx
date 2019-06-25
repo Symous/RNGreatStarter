@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, Alert } from 'react-native';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 import Avatar from '@/components/Avatar';
@@ -11,12 +11,12 @@ const AVATAR_SIZE = 60;
 interface Props {
     dispatch: any;
     navigation: any;
+    userModel: any;
     loading: boolean;
 }
 interface State {
-    registering: boolean;
     name: string;
-    userName: string;
+    username: string;
     password: string;
 }
 class Login extends Component<Props, State> {
@@ -27,29 +27,46 @@ class Login extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            registering: false,
             name: '',
-            userName: '',
+            username: '',
             password: '',
         };
     }
 
     login = () => {
         const { dispatch, navigation } = this.props;
+        const { username, password } = this.state;
         dispatch({
             type: 'userModel/login',
             payload: {
-                username: 'rngs',
-                password: '999',
+                username,
+                password,
             },
-            callback: () => {
-                navigation.navigate('Home');
+            callback: (isSuccess: boolean) => {
+                if (isSuccess) navigation.navigate('Home');
+                else Alert.alert('注意', '登录失败了...');
+            },
+        });
+    };
+
+    register = () => {
+        Alert.alert('注意', '不允许你进行注册...');
+    };
+
+    switchStatus = () => {
+        const { dispatch, userModel } = this.props;
+        dispatch({
+            type: 'userModel/changeLoginStatus',
+            payload: {
+                status: userModel.status === 'register' ? 'logout' : 'register',
             },
         });
     };
 
     render() {
-        const { registering, name, userName, password } = this.state;
+        const { userModel } = this.props;
+        const registering = userModel.status === 'register';
+        const { name, username, password } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.logoContainer}>
@@ -71,8 +88,8 @@ class Login extends Component<Props, State> {
                     )}
                     <Input
                         placeholder="用户名(rngs)"
-                        value={userName}
-                        onChange={text => this.setState({ userName: text })}
+                        value={username}
+                        onChange={text => this.setState({ username: text })}
                     />
                     <Input
                         placeholder="登录密码(999)"
@@ -83,13 +100,10 @@ class Login extends Component<Props, State> {
                     <Button
                         style={styles.button}
                         title={registering ? '注册' : '登录'}
-                        onPress={this.login}
+                        onPress={registering ? this.register : this.login}
                     />
                 </View>
-                <Text
-                    onPress={() => this.setState({ registering: !registering })}
-                    style={styles.link}
-                >
+                <Text onPress={this.switchStatus} style={styles.link}>
                     {registering ? '返回登录' : '用户注册'}
                 </Text>
             </View>
@@ -99,7 +113,7 @@ class Login extends Component<Props, State> {
 
 function mapStateToProps({ userModel, loading }: any) {
     return {
-        user: userModel,
+        userModel,
         loading: loading.models.userModel,
     };
 }

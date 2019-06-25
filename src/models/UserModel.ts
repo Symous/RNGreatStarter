@@ -27,7 +27,7 @@ export default {
         changeLoginStatus(state, { payload }) {
             return {
                 ...state,
-                stauts: payload.status,
+                status: payload.status,
                 currentUser: payload.currentUser,
             };
         },

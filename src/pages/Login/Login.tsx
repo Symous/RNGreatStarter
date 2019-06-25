@@ -71,7 +71,11 @@ class Login extends Component<Props, State> {
             <View style={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image source={require('./images/logo.png')} style={styles.logo} />
-                    <Text>RN.Great.Starter</Text>
+                    <Text>
+                        <Text style={styles.highlightText}>RN</Text>.
+                        <Text style={styles.highlightText}>G</Text>reat.
+                        <Text style={styles.highlightText}>S</Text>tarter
+                    </Text>
                 </View>
                 <View style={styles.formContainer}>
                     <Avatar
@@ -160,6 +164,10 @@ const styles = StyleSheet.create({
     },
     link: {
         marginTop: 50,
+        fontWeight: 'bold',
+    },
+    highlightText: {
+        fontSize: 16,
         fontWeight: 'bold',
     },
 });

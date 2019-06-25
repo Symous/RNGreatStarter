@@ -4,7 +4,7 @@ import { Colors } from '@/settings';
 
 interface ButtonProps {
     title?: string;
-    icon?: any;
+    icon?: JSX.Element[] | JSX.Element;
     loading?: boolean;
     disabled?: boolean;
     onPress?: () => void;

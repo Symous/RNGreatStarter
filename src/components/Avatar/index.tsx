@@ -3,8 +3,8 @@ import { Image } from 'react-native';
 import { Colors } from '@/settings';
 
 interface AvatarProps {
-    // TODO: 这里不应该使用any类型
-    img?: any;
+    // TODO: require引入的资源使用number类型？
+    img?: number;
     size?: number;
     style?: object;
 }

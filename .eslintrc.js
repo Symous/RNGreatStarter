@@ -29,7 +29,8 @@ module.exports = {
     'import',
     'jsx-a11y',
     'typescript',
-    'prettier'
+    'prettier',
+    'react-hooks',
   ],
   rules: {
     'react/jsx-filename-extension': [
@@ -52,6 +53,9 @@ module.exports = {
     'react-native/no-color-literals': 0, // enforces variable names to be used for storing colors
 
     'prettier/prettier': 2,
+
+    'react-hooks/rules-of-hooks': 'error', // 检查 Hook 的规则
+    'react-hooks/exhaustive-deps': 'warn' // 检查 effect 的依赖
   },
   // parser: 'typescript-eslint-parser', //代替默认parser，使ESLint更友好的支持TypeScript类型检查
   parser: '@typescript-eslint/parser',
